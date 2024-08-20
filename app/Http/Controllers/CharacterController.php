@@ -16,4 +16,12 @@ class CharacterController extends Controller
         }
         return response()->json($characters['results'], 200);
     }
+
+    public function show($id) {
+        $character = (new \App\Services\RickAndMortyService)->getCharacterById($id);
+        if(!$character){
+            return response()->json(['error' => true, "message" => "Character not found"], 404);
+        }
+        return response()->json($character, 200);
+    }
 }
