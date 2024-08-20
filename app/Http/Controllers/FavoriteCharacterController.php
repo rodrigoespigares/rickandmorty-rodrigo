@@ -18,25 +18,28 @@ class FavoriteCharacterController extends Controller
             return response()->json(['message' => 'Character not found'], 404);
         }
     
-        $favorite = $request->user()->favoriteCharacters()->create([
+        $favorite = FavoriteCharacter::create([ 
+            'user_id' => Auth::user()->id,
             'character_id' => $request->character_id,
         ]);
     
-        return response()->json($favorite, 201);
+        return response()->json(["error"=> false, "message"=> "Character added to favorites"], 201);
     }
     
     public function index(Request $request) {
-        return response()->json($request->user()->favoriteCharacters()->with('details')->get());
+        $characters = FavoriteCharacter::where('user_id', Auth::user()->id)->get();
+        
+        return response()->json($characters);
     }
     
     public function destroy($id) {
         $favorite = FavoriteCharacter::where('user_id', Auth::user()->id)->where('character_id', $id)->first();
     
         if (!$favorite) {
-            return response()->json(['message' => 'Not found'], 404);
+            return response()->json(['error' => true, 'message' => 'Not found'], 404);
         }
     
         $favorite->delete();
-        return response()->json(null, 204);
+        return response()->json(['error' => false, 'message' => 'Character removed from favorites'], 202);
     }
 }
