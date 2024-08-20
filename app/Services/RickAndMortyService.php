@@ -15,12 +15,16 @@ class RickAndMortyService {
             $response = $this->client->request('GET', 'character', ['query' => $queryParams]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (\Exception $e) {
-            return ['error' => true, 'message' => $e->getMessage()];
+            return [];
         }
     }
 
     public function getCharacterById($id) {
-        $response = $this->client->request('GET', "character/{$id}");
-        return json_decode($response->getBody()->getContents(), true);
+        try{
+            $response = $this->client->request('GET', "character/{$id}");
+            return json_decode($response->getBody()->getContents(), true);
+        }catch(\Exception $e){
+            return [];
+        }
     }
 }
