@@ -6,6 +6,7 @@ use App\Models\FavoriteCharacter;
 use App\Services\RickAndMortyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class FavoriteCharacterController extends Controller
 {
@@ -28,8 +29,16 @@ class FavoriteCharacterController extends Controller
     
     public function index(Request $request) {
         $characters = FavoriteCharacter::where('user_id', Auth::user()->id)->get();
-        
-        return response()->json($characters);
+        $baseUrl = rtrim(URL::to('/api/characters/'), '/') . '/';
+
+        $charactersWithUrls = $characters->map(function ($character) use ($baseUrl) {
+            return [
+                'character_id' => $character->character_id,
+                'url' => $baseUrl . $character->character_id
+            ];
+        });
+
+        return response()->json($charactersWithUrls);
     }
     
     public function destroy($id) {
