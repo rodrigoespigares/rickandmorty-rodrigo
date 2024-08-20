@@ -20,8 +20,7 @@ Route::get('characters/{id}', [CharacterController::class, 'show']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    
+Route::middleware('auth:api')->group(function () {
     Route::post('favorites', [FavoriteCharacterController::class, 'store']);
     Route::get('favorites', [FavoriteCharacterController::class, 'index']);
     Route::delete('favorites/{id}', [FavoriteCharacterController::class, 'destroy']);
