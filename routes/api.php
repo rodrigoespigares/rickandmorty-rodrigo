@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('characters', [CharacterController::class, 'index']);
+Route::get('characters', [CharacterController::class, 'index'])->name('characters.index');
 Route::get('characters/{id}', [CharacterController::class, 'show']);
 
 Route::post('register', [AuthController::class, 'register']);
