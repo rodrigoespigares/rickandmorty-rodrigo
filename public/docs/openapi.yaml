@@ -1,0 +1,1756 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/favorites:
+    post:
+      summary: 'Añadir un personaje a la lista de favoritos.'
+      operationId: aadirUnPersonajeALaListaDeFavoritos
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: false
+                  message: 'Character added to favorites'
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Character added to favorites'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  message: 'Character not found'
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Character not found'
+      tags:
+        - Autenticado
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                character_id:
+                  type: integer
+                  description: 'Id del personaje'
+                  example: 8
+      security: []
+    get:
+      summary: 'Listar los personajes favoritos.'
+      operationId: listarLosPersonajesFavoritos
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{[\n   {\n       \"character_id\": integer,\n       \"url\": string\n   }\n]}"
+      tags:
+        - Autenticado
+      security: []
+  '/api/favorites/{id}':
+    delete:
+      summary: 'Eliminar un personaje de la lista de favoritos.'
+      operationId: eliminarUnPersonajeDeLaListaDeFavoritos
+      description: ''
+      parameters:
+        -
+          in: query
+          name: id
+          description: 'Id del personaje'
+          example: 10
+          required: true
+          schema:
+            type: integer
+            description: 'Id del personaje'
+            example: 10
+      responses:
+        202:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: false
+                  message: 'Character removed from favorites'
+                properties:
+                  error:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Character removed from favorites'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  message: 'Not found'
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Not found'
+      tags:
+        - Autenticado
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the favorite.'
+        example: nulla
+        required: true
+        schema:
+          type: string
+  /api/characters:
+    get:
+      summary: 'Listar personajes.'
+      operationId: listarPersonajes
+      description: ''
+      parameters:
+        -
+          in: query
+          name: name
+          description: 'Nombre del personaje'
+          example: voluptas
+          required: false
+          schema:
+            type: string
+            description: 'Nombre del personaje'
+            example: voluptas
+        -
+          in: query
+          name: species
+          description: 'Nombre de especie'
+          example: accusamus
+          required: false
+          schema:
+            type: string
+            description: 'Nombre de especie'
+            example: accusamus
+        -
+          in: query
+          name: gender
+          description: 'Nombre de género'
+          example: illum
+          required: false
+          schema:
+            type: string
+            description: 'Nombre de género'
+            example: illum
+        -
+          in: query
+          name: type
+          description: 'Nombre de tipo'
+          example: vero
+          required: false
+          schema:
+            type: string
+            description: 'Nombre de tipo'
+            example: vero
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  info:
+                    count: 826
+                    pages: 42
+                    next: 'http://localhost:8000/api/characters?page=2'
+                    prev: null
+                  results:
+                    -
+                      id: 1
+                      name: 'Rick Sanchez'
+                      status: Alive
+                      species: Human
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: 'Earth (C-137)'
+                        url: 'https://rickandmortyapi.com/api/location/1'
+                      location:
+                        name: 'Citadel of Ricks'
+                        url: 'https://rickandmortyapi.com/api/location/3'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/1'
+                        - 'https://rickandmortyapi.com/api/episode/2'
+                        - 'https://rickandmortyapi.com/api/episode/3'
+                        - 'https://rickandmortyapi.com/api/episode/4'
+                        - 'https://rickandmortyapi.com/api/episode/5'
+                        - 'https://rickandmortyapi.com/api/episode/6'
+                        - 'https://rickandmortyapi.com/api/episode/7'
+                        - 'https://rickandmortyapi.com/api/episode/8'
+                        - 'https://rickandmortyapi.com/api/episode/9'
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                        - 'https://rickandmortyapi.com/api/episode/11'
+                        - 'https://rickandmortyapi.com/api/episode/12'
+                        - 'https://rickandmortyapi.com/api/episode/13'
+                        - 'https://rickandmortyapi.com/api/episode/14'
+                        - 'https://rickandmortyapi.com/api/episode/15'
+                        - 'https://rickandmortyapi.com/api/episode/16'
+                        - 'https://rickandmortyapi.com/api/episode/17'
+                        - 'https://rickandmortyapi.com/api/episode/18'
+                        - 'https://rickandmortyapi.com/api/episode/19'
+                        - 'https://rickandmortyapi.com/api/episode/20'
+                        - 'https://rickandmortyapi.com/api/episode/21'
+                        - 'https://rickandmortyapi.com/api/episode/22'
+                        - 'https://rickandmortyapi.com/api/episode/23'
+                        - 'https://rickandmortyapi.com/api/episode/24'
+                        - 'https://rickandmortyapi.com/api/episode/25'
+                        - 'https://rickandmortyapi.com/api/episode/26'
+                        - 'https://rickandmortyapi.com/api/episode/27'
+                        - 'https://rickandmortyapi.com/api/episode/28'
+                        - 'https://rickandmortyapi.com/api/episode/29'
+                        - 'https://rickandmortyapi.com/api/episode/30'
+                        - 'https://rickandmortyapi.com/api/episode/31'
+                        - 'https://rickandmortyapi.com/api/episode/32'
+                        - 'https://rickandmortyapi.com/api/episode/33'
+                        - 'https://rickandmortyapi.com/api/episode/34'
+                        - 'https://rickandmortyapi.com/api/episode/35'
+                        - 'https://rickandmortyapi.com/api/episode/36'
+                        - 'https://rickandmortyapi.com/api/episode/37'
+                        - 'https://rickandmortyapi.com/api/episode/38'
+                        - 'https://rickandmortyapi.com/api/episode/39'
+                        - 'https://rickandmortyapi.com/api/episode/40'
+                        - 'https://rickandmortyapi.com/api/episode/41'
+                        - 'https://rickandmortyapi.com/api/episode/42'
+                        - 'https://rickandmortyapi.com/api/episode/43'
+                        - 'https://rickandmortyapi.com/api/episode/44'
+                        - 'https://rickandmortyapi.com/api/episode/45'
+                        - 'https://rickandmortyapi.com/api/episode/46'
+                        - 'https://rickandmortyapi.com/api/episode/47'
+                        - 'https://rickandmortyapi.com/api/episode/48'
+                        - 'https://rickandmortyapi.com/api/episode/49'
+                        - 'https://rickandmortyapi.com/api/episode/50'
+                        - 'https://rickandmortyapi.com/api/episode/51'
+                      url: 'https://rickandmortyapi.com/api/character/1'
+                      created: '2017-11-04T18:48:46.250Z'
+                    -
+                      id: 2
+                      name: 'Morty Smith'
+                      status: Alive
+                      species: Human
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Citadel of Ricks'
+                        url: 'https://rickandmortyapi.com/api/location/3'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/1'
+                        - 'https://rickandmortyapi.com/api/episode/2'
+                        - 'https://rickandmortyapi.com/api/episode/3'
+                        - 'https://rickandmortyapi.com/api/episode/4'
+                        - 'https://rickandmortyapi.com/api/episode/5'
+                        - 'https://rickandmortyapi.com/api/episode/6'
+                        - 'https://rickandmortyapi.com/api/episode/7'
+                        - 'https://rickandmortyapi.com/api/episode/8'
+                        - 'https://rickandmortyapi.com/api/episode/9'
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                        - 'https://rickandmortyapi.com/api/episode/11'
+                        - 'https://rickandmortyapi.com/api/episode/12'
+                        - 'https://rickandmortyapi.com/api/episode/13'
+                        - 'https://rickandmortyapi.com/api/episode/14'
+                        - 'https://rickandmortyapi.com/api/episode/15'
+                        - 'https://rickandmortyapi.com/api/episode/16'
+                        - 'https://rickandmortyapi.com/api/episode/17'
+                        - 'https://rickandmortyapi.com/api/episode/18'
+                        - 'https://rickandmortyapi.com/api/episode/19'
+                        - 'https://rickandmortyapi.com/api/episode/20'
+                        - 'https://rickandmortyapi.com/api/episode/21'
+                        - 'https://rickandmortyapi.com/api/episode/22'
+                        - 'https://rickandmortyapi.com/api/episode/23'
+                        - 'https://rickandmortyapi.com/api/episode/24'
+                        - 'https://rickandmortyapi.com/api/episode/25'
+                        - 'https://rickandmortyapi.com/api/episode/26'
+                        - 'https://rickandmortyapi.com/api/episode/27'
+                        - 'https://rickandmortyapi.com/api/episode/28'
+                        - 'https://rickandmortyapi.com/api/episode/29'
+                        - 'https://rickandmortyapi.com/api/episode/30'
+                        - 'https://rickandmortyapi.com/api/episode/31'
+                        - 'https://rickandmortyapi.com/api/episode/32'
+                        - 'https://rickandmortyapi.com/api/episode/33'
+                        - 'https://rickandmortyapi.com/api/episode/34'
+                        - 'https://rickandmortyapi.com/api/episode/35'
+                        - 'https://rickandmortyapi.com/api/episode/36'
+                        - 'https://rickandmortyapi.com/api/episode/37'
+                        - 'https://rickandmortyapi.com/api/episode/38'
+                        - 'https://rickandmortyapi.com/api/episode/39'
+                        - 'https://rickandmortyapi.com/api/episode/40'
+                        - 'https://rickandmortyapi.com/api/episode/41'
+                        - 'https://rickandmortyapi.com/api/episode/42'
+                        - 'https://rickandmortyapi.com/api/episode/43'
+                        - 'https://rickandmortyapi.com/api/episode/44'
+                        - 'https://rickandmortyapi.com/api/episode/45'
+                        - 'https://rickandmortyapi.com/api/episode/46'
+                        - 'https://rickandmortyapi.com/api/episode/47'
+                        - 'https://rickandmortyapi.com/api/episode/48'
+                        - 'https://rickandmortyapi.com/api/episode/49'
+                        - 'https://rickandmortyapi.com/api/episode/50'
+                        - 'https://rickandmortyapi.com/api/episode/51'
+                      url: 'https://rickandmortyapi.com/api/character/2'
+                      created: '2017-11-04T18:50:21.651Z'
+                    -
+                      id: 3
+                      name: 'Summer Smith'
+                      status: Alive
+                      species: Human
+                      type: ''
+                      gender: Female
+                      origin:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      location:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/6'
+                        - 'https://rickandmortyapi.com/api/episode/7'
+                        - 'https://rickandmortyapi.com/api/episode/8'
+                        - 'https://rickandmortyapi.com/api/episode/9'
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                        - 'https://rickandmortyapi.com/api/episode/11'
+                        - 'https://rickandmortyapi.com/api/episode/12'
+                        - 'https://rickandmortyapi.com/api/episode/14'
+                        - 'https://rickandmortyapi.com/api/episode/15'
+                        - 'https://rickandmortyapi.com/api/episode/16'
+                        - 'https://rickandmortyapi.com/api/episode/17'
+                        - 'https://rickandmortyapi.com/api/episode/18'
+                        - 'https://rickandmortyapi.com/api/episode/19'
+                        - 'https://rickandmortyapi.com/api/episode/20'
+                        - 'https://rickandmortyapi.com/api/episode/21'
+                        - 'https://rickandmortyapi.com/api/episode/22'
+                        - 'https://rickandmortyapi.com/api/episode/23'
+                        - 'https://rickandmortyapi.com/api/episode/24'
+                        - 'https://rickandmortyapi.com/api/episode/25'
+                        - 'https://rickandmortyapi.com/api/episode/26'
+                        - 'https://rickandmortyapi.com/api/episode/27'
+                        - 'https://rickandmortyapi.com/api/episode/29'
+                        - 'https://rickandmortyapi.com/api/episode/30'
+                        - 'https://rickandmortyapi.com/api/episode/31'
+                        - 'https://rickandmortyapi.com/api/episode/32'
+                        - 'https://rickandmortyapi.com/api/episode/33'
+                        - 'https://rickandmortyapi.com/api/episode/34'
+                        - 'https://rickandmortyapi.com/api/episode/35'
+                        - 'https://rickandmortyapi.com/api/episode/36'
+                        - 'https://rickandmortyapi.com/api/episode/38'
+                        - 'https://rickandmortyapi.com/api/episode/39'
+                        - 'https://rickandmortyapi.com/api/episode/40'
+                        - 'https://rickandmortyapi.com/api/episode/41'
+                        - 'https://rickandmortyapi.com/api/episode/42'
+                        - 'https://rickandmortyapi.com/api/episode/43'
+                        - 'https://rickandmortyapi.com/api/episode/44'
+                        - 'https://rickandmortyapi.com/api/episode/45'
+                        - 'https://rickandmortyapi.com/api/episode/46'
+                        - 'https://rickandmortyapi.com/api/episode/47'
+                        - 'https://rickandmortyapi.com/api/episode/48'
+                        - 'https://rickandmortyapi.com/api/episode/49'
+                        - 'https://rickandmortyapi.com/api/episode/51'
+                      url: 'https://rickandmortyapi.com/api/character/3'
+                      created: '2017-11-04T19:09:56.428Z'
+                    -
+                      id: 4
+                      name: 'Beth Smith'
+                      status: Alive
+                      species: Human
+                      type: ''
+                      gender: Female
+                      origin:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      location:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/6'
+                        - 'https://rickandmortyapi.com/api/episode/7'
+                        - 'https://rickandmortyapi.com/api/episode/8'
+                        - 'https://rickandmortyapi.com/api/episode/9'
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                        - 'https://rickandmortyapi.com/api/episode/11'
+                        - 'https://rickandmortyapi.com/api/episode/12'
+                        - 'https://rickandmortyapi.com/api/episode/14'
+                        - 'https://rickandmortyapi.com/api/episode/15'
+                        - 'https://rickandmortyapi.com/api/episode/16'
+                        - 'https://rickandmortyapi.com/api/episode/18'
+                        - 'https://rickandmortyapi.com/api/episode/19'
+                        - 'https://rickandmortyapi.com/api/episode/20'
+                        - 'https://rickandmortyapi.com/api/episode/21'
+                        - 'https://rickandmortyapi.com/api/episode/22'
+                        - 'https://rickandmortyapi.com/api/episode/23'
+                        - 'https://rickandmortyapi.com/api/episode/24'
+                        - 'https://rickandmortyapi.com/api/episode/25'
+                        - 'https://rickandmortyapi.com/api/episode/26'
+                        - 'https://rickandmortyapi.com/api/episode/27'
+                        - 'https://rickandmortyapi.com/api/episode/28'
+                        - 'https://rickandmortyapi.com/api/episode/29'
+                        - 'https://rickandmortyapi.com/api/episode/30'
+                        - 'https://rickandmortyapi.com/api/episode/31'
+                        - 'https://rickandmortyapi.com/api/episode/32'
+                        - 'https://rickandmortyapi.com/api/episode/33'
+                        - 'https://rickandmortyapi.com/api/episode/34'
+                        - 'https://rickandmortyapi.com/api/episode/35'
+                        - 'https://rickandmortyapi.com/api/episode/36'
+                        - 'https://rickandmortyapi.com/api/episode/38'
+                        - 'https://rickandmortyapi.com/api/episode/39'
+                        - 'https://rickandmortyapi.com/api/episode/40'
+                        - 'https://rickandmortyapi.com/api/episode/41'
+                        - 'https://rickandmortyapi.com/api/episode/42'
+                        - 'https://rickandmortyapi.com/api/episode/43'
+                        - 'https://rickandmortyapi.com/api/episode/44'
+                        - 'https://rickandmortyapi.com/api/episode/45'
+                        - 'https://rickandmortyapi.com/api/episode/46'
+                        - 'https://rickandmortyapi.com/api/episode/47'
+                        - 'https://rickandmortyapi.com/api/episode/48'
+                        - 'https://rickandmortyapi.com/api/episode/49'
+                        - 'https://rickandmortyapi.com/api/episode/51'
+                      url: 'https://rickandmortyapi.com/api/character/4'
+                      created: '2017-11-04T19:22:43.665Z'
+                    -
+                      id: 5
+                      name: 'Jerry Smith'
+                      status: Alive
+                      species: Human
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      location:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/6'
+                        - 'https://rickandmortyapi.com/api/episode/7'
+                        - 'https://rickandmortyapi.com/api/episode/8'
+                        - 'https://rickandmortyapi.com/api/episode/9'
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                        - 'https://rickandmortyapi.com/api/episode/11'
+                        - 'https://rickandmortyapi.com/api/episode/12'
+                        - 'https://rickandmortyapi.com/api/episode/13'
+                        - 'https://rickandmortyapi.com/api/episode/14'
+                        - 'https://rickandmortyapi.com/api/episode/15'
+                        - 'https://rickandmortyapi.com/api/episode/16'
+                        - 'https://rickandmortyapi.com/api/episode/18'
+                        - 'https://rickandmortyapi.com/api/episode/19'
+                        - 'https://rickandmortyapi.com/api/episode/20'
+                        - 'https://rickandmortyapi.com/api/episode/21'
+                        - 'https://rickandmortyapi.com/api/episode/22'
+                        - 'https://rickandmortyapi.com/api/episode/23'
+                        - 'https://rickandmortyapi.com/api/episode/26'
+                        - 'https://rickandmortyapi.com/api/episode/29'
+                        - 'https://rickandmortyapi.com/api/episode/30'
+                        - 'https://rickandmortyapi.com/api/episode/31'
+                        - 'https://rickandmortyapi.com/api/episode/32'
+                        - 'https://rickandmortyapi.com/api/episode/33'
+                        - 'https://rickandmortyapi.com/api/episode/35'
+                        - 'https://rickandmortyapi.com/api/episode/36'
+                        - 'https://rickandmortyapi.com/api/episode/38'
+                        - 'https://rickandmortyapi.com/api/episode/39'
+                        - 'https://rickandmortyapi.com/api/episode/40'
+                        - 'https://rickandmortyapi.com/api/episode/41'
+                        - 'https://rickandmortyapi.com/api/episode/42'
+                        - 'https://rickandmortyapi.com/api/episode/43'
+                        - 'https://rickandmortyapi.com/api/episode/44'
+                        - 'https://rickandmortyapi.com/api/episode/45'
+                        - 'https://rickandmortyapi.com/api/episode/46'
+                        - 'https://rickandmortyapi.com/api/episode/47'
+                        - 'https://rickandmortyapi.com/api/episode/48'
+                        - 'https://rickandmortyapi.com/api/episode/49'
+                        - 'https://rickandmortyapi.com/api/episode/50'
+                        - 'https://rickandmortyapi.com/api/episode/51'
+                      url: 'https://rickandmortyapi.com/api/character/5'
+                      created: '2017-11-04T19:26:56.301Z'
+                    -
+                      id: 6
+                      name: 'Abadango Cluster Princess'
+                      status: Alive
+                      species: Alien
+                      type: ''
+                      gender: Female
+                      origin:
+                        name: Abadango
+                        url: 'https://rickandmortyapi.com/api/location/2'
+                      location:
+                        name: Abadango
+                        url: 'https://rickandmortyapi.com/api/location/2'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/6.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/27'
+                      url: 'https://rickandmortyapi.com/api/character/6'
+                      created: '2017-11-04T19:50:28.250Z'
+                    -
+                      id: 7
+                      name: 'Abradolf Lincler'
+                      status: unknown
+                      species: Human
+                      type: 'Genetic experiment'
+                      gender: Male
+                      origin:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      location:
+                        name: 'Testicle Monster Dimension'
+                        url: 'https://rickandmortyapi.com/api/location/21'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/7.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                        - 'https://rickandmortyapi.com/api/episode/11'
+                      url: 'https://rickandmortyapi.com/api/character/7'
+                      created: '2017-11-04T19:59:20.523Z'
+                    -
+                      id: 8
+                      name: 'Adjudicator Rick'
+                      status: Dead
+                      species: Human
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Citadel of Ricks'
+                        url: 'https://rickandmortyapi.com/api/location/3'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/8.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/28'
+                      url: 'https://rickandmortyapi.com/api/character/8'
+                      created: '2017-11-04T20:03:34.737Z'
+                    -
+                      id: 9
+                      name: 'Agency Director'
+                      status: Dead
+                      species: Human
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      location:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/9.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/24'
+                      url: 'https://rickandmortyapi.com/api/character/9'
+                      created: '2017-11-04T20:06:54.976Z'
+                    -
+                      id: 10
+                      name: 'Alan Rails'
+                      status: Dead
+                      species: Human
+                      type: 'Superhuman (Ghost trains summoner)'
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: "Worldender's lair"
+                        url: 'https://rickandmortyapi.com/api/location/4'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/10.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/25'
+                      url: 'https://rickandmortyapi.com/api/character/10'
+                      created: '2017-11-04T20:19:09.017Z'
+                    -
+                      id: 11
+                      name: 'Albert Einstein'
+                      status: Dead
+                      species: Human
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: 'Earth (C-137)'
+                        url: 'https://rickandmortyapi.com/api/location/1'
+                      location:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/11.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/12'
+                      url: 'https://rickandmortyapi.com/api/character/11'
+                      created: '2017-11-04T20:20:20.965Z'
+                    -
+                      id: 12
+                      name: Alexander
+                      status: Dead
+                      species: Human
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: 'Earth (C-137)'
+                        url: 'https://rickandmortyapi.com/api/location/1'
+                      location:
+                        name: 'Anatomy Park'
+                        url: 'https://rickandmortyapi.com/api/location/5'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/12.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/3'
+                      url: 'https://rickandmortyapi.com/api/character/12'
+                      created: '2017-11-04T20:32:33.144Z'
+                    -
+                      id: 13
+                      name: 'Alien Googah'
+                      status: unknown
+                      species: Alien
+                      type: ''
+                      gender: unknown
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/13.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/31'
+                      url: 'https://rickandmortyapi.com/api/character/13'
+                      created: '2017-11-04T20:33:30.779Z'
+                    -
+                      id: 14
+                      name: 'Alien Morty'
+                      status: unknown
+                      species: Alien
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Citadel of Ricks'
+                        url: 'https://rickandmortyapi.com/api/location/3'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/14.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                      url: 'https://rickandmortyapi.com/api/character/14'
+                      created: '2017-11-04T20:51:31.373Z'
+                    -
+                      id: 15
+                      name: 'Alien Rick'
+                      status: unknown
+                      species: Alien
+                      type: ''
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Citadel of Ricks'
+                        url: 'https://rickandmortyapi.com/api/location/3'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/15.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                      url: 'https://rickandmortyapi.com/api/character/15'
+                      created: '2017-11-04T20:56:13.215Z'
+                    -
+                      id: 16
+                      name: 'Amish Cyborg'
+                      status: Dead
+                      species: Alien
+                      type: Parasite
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Earth (Replacement Dimension)'
+                        url: 'https://rickandmortyapi.com/api/location/20'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/16.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/15'
+                      url: 'https://rickandmortyapi.com/api/character/16'
+                      created: '2017-11-04T21:12:45.235Z'
+                    -
+                      id: 17
+                      name: Annie
+                      status: Alive
+                      species: Human
+                      type: ''
+                      gender: Female
+                      origin:
+                        name: 'Earth (C-137)'
+                        url: 'https://rickandmortyapi.com/api/location/1'
+                      location:
+                        name: 'Anatomy Park'
+                        url: 'https://rickandmortyapi.com/api/location/5'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/17.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/3'
+                      url: 'https://rickandmortyapi.com/api/character/17'
+                      created: '2017-11-04T22:21:24.481Z'
+                    -
+                      id: 18
+                      name: 'Antenna Morty'
+                      status: Alive
+                      species: Human
+                      type: 'Human with antennae'
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Citadel of Ricks'
+                        url: 'https://rickandmortyapi.com/api/location/3'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/18.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                        - 'https://rickandmortyapi.com/api/episode/28'
+                      url: 'https://rickandmortyapi.com/api/character/18'
+                      created: '2017-11-04T22:25:29.008Z'
+                    -
+                      id: 19
+                      name: 'Antenna Rick'
+                      status: unknown
+                      species: Human
+                      type: 'Human with antennae'
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: unknown
+                        url: ''
+                      image: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/10'
+                      url: 'https://rickandmortyapi.com/api/character/19'
+                      created: '2017-11-04T22:28:13.756Z'
+                    -
+                      id: 20
+                      name: 'Ants in my Eyes Johnson'
+                      status: unknown
+                      species: Human
+                      type: 'Human with ants in his eyes'
+                      gender: Male
+                      origin:
+                        name: unknown
+                        url: ''
+                      location:
+                        name: 'Interdimensional Cable'
+                        url: 'https://rickandmortyapi.com/api/location/6'
+                      image: 'https://rickandmortyapi.com/api/character/avatar/20.jpeg'
+                      episode:
+                        - 'https://rickandmortyapi.com/api/episode/8'
+                      url: 'https://rickandmortyapi.com/api/character/20'
+                      created: '2017-11-04T22:34:53.659Z'
+                properties:
+                  info:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        example: 826
+                      pages:
+                        type: integer
+                        example: 42
+                      next:
+                        type: string
+                        example: 'http://localhost:8000/api/characters?page=2'
+                      prev:
+                        type: string
+                        example: null
+                  results:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Rick Sanchez'
+                        status: Alive
+                        species: Human
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: 'Earth (C-137)'
+                          url: 'https://rickandmortyapi.com/api/location/1'
+                        location:
+                          name: 'Citadel of Ricks'
+                          url: 'https://rickandmortyapi.com/api/location/3'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/1'
+                          - 'https://rickandmortyapi.com/api/episode/2'
+                          - 'https://rickandmortyapi.com/api/episode/3'
+                          - 'https://rickandmortyapi.com/api/episode/4'
+                          - 'https://rickandmortyapi.com/api/episode/5'
+                          - 'https://rickandmortyapi.com/api/episode/6'
+                          - 'https://rickandmortyapi.com/api/episode/7'
+                          - 'https://rickandmortyapi.com/api/episode/8'
+                          - 'https://rickandmortyapi.com/api/episode/9'
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                          - 'https://rickandmortyapi.com/api/episode/11'
+                          - 'https://rickandmortyapi.com/api/episode/12'
+                          - 'https://rickandmortyapi.com/api/episode/13'
+                          - 'https://rickandmortyapi.com/api/episode/14'
+                          - 'https://rickandmortyapi.com/api/episode/15'
+                          - 'https://rickandmortyapi.com/api/episode/16'
+                          - 'https://rickandmortyapi.com/api/episode/17'
+                          - 'https://rickandmortyapi.com/api/episode/18'
+                          - 'https://rickandmortyapi.com/api/episode/19'
+                          - 'https://rickandmortyapi.com/api/episode/20'
+                          - 'https://rickandmortyapi.com/api/episode/21'
+                          - 'https://rickandmortyapi.com/api/episode/22'
+                          - 'https://rickandmortyapi.com/api/episode/23'
+                          - 'https://rickandmortyapi.com/api/episode/24'
+                          - 'https://rickandmortyapi.com/api/episode/25'
+                          - 'https://rickandmortyapi.com/api/episode/26'
+                          - 'https://rickandmortyapi.com/api/episode/27'
+                          - 'https://rickandmortyapi.com/api/episode/28'
+                          - 'https://rickandmortyapi.com/api/episode/29'
+                          - 'https://rickandmortyapi.com/api/episode/30'
+                          - 'https://rickandmortyapi.com/api/episode/31'
+                          - 'https://rickandmortyapi.com/api/episode/32'
+                          - 'https://rickandmortyapi.com/api/episode/33'
+                          - 'https://rickandmortyapi.com/api/episode/34'
+                          - 'https://rickandmortyapi.com/api/episode/35'
+                          - 'https://rickandmortyapi.com/api/episode/36'
+                          - 'https://rickandmortyapi.com/api/episode/37'
+                          - 'https://rickandmortyapi.com/api/episode/38'
+                          - 'https://rickandmortyapi.com/api/episode/39'
+                          - 'https://rickandmortyapi.com/api/episode/40'
+                          - 'https://rickandmortyapi.com/api/episode/41'
+                          - 'https://rickandmortyapi.com/api/episode/42'
+                          - 'https://rickandmortyapi.com/api/episode/43'
+                          - 'https://rickandmortyapi.com/api/episode/44'
+                          - 'https://rickandmortyapi.com/api/episode/45'
+                          - 'https://rickandmortyapi.com/api/episode/46'
+                          - 'https://rickandmortyapi.com/api/episode/47'
+                          - 'https://rickandmortyapi.com/api/episode/48'
+                          - 'https://rickandmortyapi.com/api/episode/49'
+                          - 'https://rickandmortyapi.com/api/episode/50'
+                          - 'https://rickandmortyapi.com/api/episode/51'
+                        url: 'https://rickandmortyapi.com/api/character/1'
+                        created: '2017-11-04T18:48:46.250Z'
+                      -
+                        id: 2
+                        name: 'Morty Smith'
+                        status: Alive
+                        species: Human
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Citadel of Ricks'
+                          url: 'https://rickandmortyapi.com/api/location/3'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/1'
+                          - 'https://rickandmortyapi.com/api/episode/2'
+                          - 'https://rickandmortyapi.com/api/episode/3'
+                          - 'https://rickandmortyapi.com/api/episode/4'
+                          - 'https://rickandmortyapi.com/api/episode/5'
+                          - 'https://rickandmortyapi.com/api/episode/6'
+                          - 'https://rickandmortyapi.com/api/episode/7'
+                          - 'https://rickandmortyapi.com/api/episode/8'
+                          - 'https://rickandmortyapi.com/api/episode/9'
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                          - 'https://rickandmortyapi.com/api/episode/11'
+                          - 'https://rickandmortyapi.com/api/episode/12'
+                          - 'https://rickandmortyapi.com/api/episode/13'
+                          - 'https://rickandmortyapi.com/api/episode/14'
+                          - 'https://rickandmortyapi.com/api/episode/15'
+                          - 'https://rickandmortyapi.com/api/episode/16'
+                          - 'https://rickandmortyapi.com/api/episode/17'
+                          - 'https://rickandmortyapi.com/api/episode/18'
+                          - 'https://rickandmortyapi.com/api/episode/19'
+                          - 'https://rickandmortyapi.com/api/episode/20'
+                          - 'https://rickandmortyapi.com/api/episode/21'
+                          - 'https://rickandmortyapi.com/api/episode/22'
+                          - 'https://rickandmortyapi.com/api/episode/23'
+                          - 'https://rickandmortyapi.com/api/episode/24'
+                          - 'https://rickandmortyapi.com/api/episode/25'
+                          - 'https://rickandmortyapi.com/api/episode/26'
+                          - 'https://rickandmortyapi.com/api/episode/27'
+                          - 'https://rickandmortyapi.com/api/episode/28'
+                          - 'https://rickandmortyapi.com/api/episode/29'
+                          - 'https://rickandmortyapi.com/api/episode/30'
+                          - 'https://rickandmortyapi.com/api/episode/31'
+                          - 'https://rickandmortyapi.com/api/episode/32'
+                          - 'https://rickandmortyapi.com/api/episode/33'
+                          - 'https://rickandmortyapi.com/api/episode/34'
+                          - 'https://rickandmortyapi.com/api/episode/35'
+                          - 'https://rickandmortyapi.com/api/episode/36'
+                          - 'https://rickandmortyapi.com/api/episode/37'
+                          - 'https://rickandmortyapi.com/api/episode/38'
+                          - 'https://rickandmortyapi.com/api/episode/39'
+                          - 'https://rickandmortyapi.com/api/episode/40'
+                          - 'https://rickandmortyapi.com/api/episode/41'
+                          - 'https://rickandmortyapi.com/api/episode/42'
+                          - 'https://rickandmortyapi.com/api/episode/43'
+                          - 'https://rickandmortyapi.com/api/episode/44'
+                          - 'https://rickandmortyapi.com/api/episode/45'
+                          - 'https://rickandmortyapi.com/api/episode/46'
+                          - 'https://rickandmortyapi.com/api/episode/47'
+                          - 'https://rickandmortyapi.com/api/episode/48'
+                          - 'https://rickandmortyapi.com/api/episode/49'
+                          - 'https://rickandmortyapi.com/api/episode/50'
+                          - 'https://rickandmortyapi.com/api/episode/51'
+                        url: 'https://rickandmortyapi.com/api/character/2'
+                        created: '2017-11-04T18:50:21.651Z'
+                      -
+                        id: 3
+                        name: 'Summer Smith'
+                        status: Alive
+                        species: Human
+                        type: ''
+                        gender: Female
+                        origin:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        location:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/6'
+                          - 'https://rickandmortyapi.com/api/episode/7'
+                          - 'https://rickandmortyapi.com/api/episode/8'
+                          - 'https://rickandmortyapi.com/api/episode/9'
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                          - 'https://rickandmortyapi.com/api/episode/11'
+                          - 'https://rickandmortyapi.com/api/episode/12'
+                          - 'https://rickandmortyapi.com/api/episode/14'
+                          - 'https://rickandmortyapi.com/api/episode/15'
+                          - 'https://rickandmortyapi.com/api/episode/16'
+                          - 'https://rickandmortyapi.com/api/episode/17'
+                          - 'https://rickandmortyapi.com/api/episode/18'
+                          - 'https://rickandmortyapi.com/api/episode/19'
+                          - 'https://rickandmortyapi.com/api/episode/20'
+                          - 'https://rickandmortyapi.com/api/episode/21'
+                          - 'https://rickandmortyapi.com/api/episode/22'
+                          - 'https://rickandmortyapi.com/api/episode/23'
+                          - 'https://rickandmortyapi.com/api/episode/24'
+                          - 'https://rickandmortyapi.com/api/episode/25'
+                          - 'https://rickandmortyapi.com/api/episode/26'
+                          - 'https://rickandmortyapi.com/api/episode/27'
+                          - 'https://rickandmortyapi.com/api/episode/29'
+                          - 'https://rickandmortyapi.com/api/episode/30'
+                          - 'https://rickandmortyapi.com/api/episode/31'
+                          - 'https://rickandmortyapi.com/api/episode/32'
+                          - 'https://rickandmortyapi.com/api/episode/33'
+                          - 'https://rickandmortyapi.com/api/episode/34'
+                          - 'https://rickandmortyapi.com/api/episode/35'
+                          - 'https://rickandmortyapi.com/api/episode/36'
+                          - 'https://rickandmortyapi.com/api/episode/38'
+                          - 'https://rickandmortyapi.com/api/episode/39'
+                          - 'https://rickandmortyapi.com/api/episode/40'
+                          - 'https://rickandmortyapi.com/api/episode/41'
+                          - 'https://rickandmortyapi.com/api/episode/42'
+                          - 'https://rickandmortyapi.com/api/episode/43'
+                          - 'https://rickandmortyapi.com/api/episode/44'
+                          - 'https://rickandmortyapi.com/api/episode/45'
+                          - 'https://rickandmortyapi.com/api/episode/46'
+                          - 'https://rickandmortyapi.com/api/episode/47'
+                          - 'https://rickandmortyapi.com/api/episode/48'
+                          - 'https://rickandmortyapi.com/api/episode/49'
+                          - 'https://rickandmortyapi.com/api/episode/51'
+                        url: 'https://rickandmortyapi.com/api/character/3'
+                        created: '2017-11-04T19:09:56.428Z'
+                      -
+                        id: 4
+                        name: 'Beth Smith'
+                        status: Alive
+                        species: Human
+                        type: ''
+                        gender: Female
+                        origin:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        location:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/6'
+                          - 'https://rickandmortyapi.com/api/episode/7'
+                          - 'https://rickandmortyapi.com/api/episode/8'
+                          - 'https://rickandmortyapi.com/api/episode/9'
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                          - 'https://rickandmortyapi.com/api/episode/11'
+                          - 'https://rickandmortyapi.com/api/episode/12'
+                          - 'https://rickandmortyapi.com/api/episode/14'
+                          - 'https://rickandmortyapi.com/api/episode/15'
+                          - 'https://rickandmortyapi.com/api/episode/16'
+                          - 'https://rickandmortyapi.com/api/episode/18'
+                          - 'https://rickandmortyapi.com/api/episode/19'
+                          - 'https://rickandmortyapi.com/api/episode/20'
+                          - 'https://rickandmortyapi.com/api/episode/21'
+                          - 'https://rickandmortyapi.com/api/episode/22'
+                          - 'https://rickandmortyapi.com/api/episode/23'
+                          - 'https://rickandmortyapi.com/api/episode/24'
+                          - 'https://rickandmortyapi.com/api/episode/25'
+                          - 'https://rickandmortyapi.com/api/episode/26'
+                          - 'https://rickandmortyapi.com/api/episode/27'
+                          - 'https://rickandmortyapi.com/api/episode/28'
+                          - 'https://rickandmortyapi.com/api/episode/29'
+                          - 'https://rickandmortyapi.com/api/episode/30'
+                          - 'https://rickandmortyapi.com/api/episode/31'
+                          - 'https://rickandmortyapi.com/api/episode/32'
+                          - 'https://rickandmortyapi.com/api/episode/33'
+                          - 'https://rickandmortyapi.com/api/episode/34'
+                          - 'https://rickandmortyapi.com/api/episode/35'
+                          - 'https://rickandmortyapi.com/api/episode/36'
+                          - 'https://rickandmortyapi.com/api/episode/38'
+                          - 'https://rickandmortyapi.com/api/episode/39'
+                          - 'https://rickandmortyapi.com/api/episode/40'
+                          - 'https://rickandmortyapi.com/api/episode/41'
+                          - 'https://rickandmortyapi.com/api/episode/42'
+                          - 'https://rickandmortyapi.com/api/episode/43'
+                          - 'https://rickandmortyapi.com/api/episode/44'
+                          - 'https://rickandmortyapi.com/api/episode/45'
+                          - 'https://rickandmortyapi.com/api/episode/46'
+                          - 'https://rickandmortyapi.com/api/episode/47'
+                          - 'https://rickandmortyapi.com/api/episode/48'
+                          - 'https://rickandmortyapi.com/api/episode/49'
+                          - 'https://rickandmortyapi.com/api/episode/51'
+                        url: 'https://rickandmortyapi.com/api/character/4'
+                        created: '2017-11-04T19:22:43.665Z'
+                      -
+                        id: 5
+                        name: 'Jerry Smith'
+                        status: Alive
+                        species: Human
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        location:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/6'
+                          - 'https://rickandmortyapi.com/api/episode/7'
+                          - 'https://rickandmortyapi.com/api/episode/8'
+                          - 'https://rickandmortyapi.com/api/episode/9'
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                          - 'https://rickandmortyapi.com/api/episode/11'
+                          - 'https://rickandmortyapi.com/api/episode/12'
+                          - 'https://rickandmortyapi.com/api/episode/13'
+                          - 'https://rickandmortyapi.com/api/episode/14'
+                          - 'https://rickandmortyapi.com/api/episode/15'
+                          - 'https://rickandmortyapi.com/api/episode/16'
+                          - 'https://rickandmortyapi.com/api/episode/18'
+                          - 'https://rickandmortyapi.com/api/episode/19'
+                          - 'https://rickandmortyapi.com/api/episode/20'
+                          - 'https://rickandmortyapi.com/api/episode/21'
+                          - 'https://rickandmortyapi.com/api/episode/22'
+                          - 'https://rickandmortyapi.com/api/episode/23'
+                          - 'https://rickandmortyapi.com/api/episode/26'
+                          - 'https://rickandmortyapi.com/api/episode/29'
+                          - 'https://rickandmortyapi.com/api/episode/30'
+                          - 'https://rickandmortyapi.com/api/episode/31'
+                          - 'https://rickandmortyapi.com/api/episode/32'
+                          - 'https://rickandmortyapi.com/api/episode/33'
+                          - 'https://rickandmortyapi.com/api/episode/35'
+                          - 'https://rickandmortyapi.com/api/episode/36'
+                          - 'https://rickandmortyapi.com/api/episode/38'
+                          - 'https://rickandmortyapi.com/api/episode/39'
+                          - 'https://rickandmortyapi.com/api/episode/40'
+                          - 'https://rickandmortyapi.com/api/episode/41'
+                          - 'https://rickandmortyapi.com/api/episode/42'
+                          - 'https://rickandmortyapi.com/api/episode/43'
+                          - 'https://rickandmortyapi.com/api/episode/44'
+                          - 'https://rickandmortyapi.com/api/episode/45'
+                          - 'https://rickandmortyapi.com/api/episode/46'
+                          - 'https://rickandmortyapi.com/api/episode/47'
+                          - 'https://rickandmortyapi.com/api/episode/48'
+                          - 'https://rickandmortyapi.com/api/episode/49'
+                          - 'https://rickandmortyapi.com/api/episode/50'
+                          - 'https://rickandmortyapi.com/api/episode/51'
+                        url: 'https://rickandmortyapi.com/api/character/5'
+                        created: '2017-11-04T19:26:56.301Z'
+                      -
+                        id: 6
+                        name: 'Abadango Cluster Princess'
+                        status: Alive
+                        species: Alien
+                        type: ''
+                        gender: Female
+                        origin:
+                          name: Abadango
+                          url: 'https://rickandmortyapi.com/api/location/2'
+                        location:
+                          name: Abadango
+                          url: 'https://rickandmortyapi.com/api/location/2'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/6.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/27'
+                        url: 'https://rickandmortyapi.com/api/character/6'
+                        created: '2017-11-04T19:50:28.250Z'
+                      -
+                        id: 7
+                        name: 'Abradolf Lincler'
+                        status: unknown
+                        species: Human
+                        type: 'Genetic experiment'
+                        gender: Male
+                        origin:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        location:
+                          name: 'Testicle Monster Dimension'
+                          url: 'https://rickandmortyapi.com/api/location/21'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/7.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                          - 'https://rickandmortyapi.com/api/episode/11'
+                        url: 'https://rickandmortyapi.com/api/character/7'
+                        created: '2017-11-04T19:59:20.523Z'
+                      -
+                        id: 8
+                        name: 'Adjudicator Rick'
+                        status: Dead
+                        species: Human
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Citadel of Ricks'
+                          url: 'https://rickandmortyapi.com/api/location/3'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/8.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/28'
+                        url: 'https://rickandmortyapi.com/api/character/8'
+                        created: '2017-11-04T20:03:34.737Z'
+                      -
+                        id: 9
+                        name: 'Agency Director'
+                        status: Dead
+                        species: Human
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        location:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/9.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/24'
+                        url: 'https://rickandmortyapi.com/api/character/9'
+                        created: '2017-11-04T20:06:54.976Z'
+                      -
+                        id: 10
+                        name: 'Alan Rails'
+                        status: Dead
+                        species: Human
+                        type: 'Superhuman (Ghost trains summoner)'
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: "Worldender's lair"
+                          url: 'https://rickandmortyapi.com/api/location/4'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/10.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/25'
+                        url: 'https://rickandmortyapi.com/api/character/10'
+                        created: '2017-11-04T20:19:09.017Z'
+                      -
+                        id: 11
+                        name: 'Albert Einstein'
+                        status: Dead
+                        species: Human
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: 'Earth (C-137)'
+                          url: 'https://rickandmortyapi.com/api/location/1'
+                        location:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/11.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/12'
+                        url: 'https://rickandmortyapi.com/api/character/11'
+                        created: '2017-11-04T20:20:20.965Z'
+                      -
+                        id: 12
+                        name: Alexander
+                        status: Dead
+                        species: Human
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: 'Earth (C-137)'
+                          url: 'https://rickandmortyapi.com/api/location/1'
+                        location:
+                          name: 'Anatomy Park'
+                          url: 'https://rickandmortyapi.com/api/location/5'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/12.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/3'
+                        url: 'https://rickandmortyapi.com/api/character/12'
+                        created: '2017-11-04T20:32:33.144Z'
+                      -
+                        id: 13
+                        name: 'Alien Googah'
+                        status: unknown
+                        species: Alien
+                        type: ''
+                        gender: unknown
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/13.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/31'
+                        url: 'https://rickandmortyapi.com/api/character/13'
+                        created: '2017-11-04T20:33:30.779Z'
+                      -
+                        id: 14
+                        name: 'Alien Morty'
+                        status: unknown
+                        species: Alien
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Citadel of Ricks'
+                          url: 'https://rickandmortyapi.com/api/location/3'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/14.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                        url: 'https://rickandmortyapi.com/api/character/14'
+                        created: '2017-11-04T20:51:31.373Z'
+                      -
+                        id: 15
+                        name: 'Alien Rick'
+                        status: unknown
+                        species: Alien
+                        type: ''
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Citadel of Ricks'
+                          url: 'https://rickandmortyapi.com/api/location/3'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/15.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                        url: 'https://rickandmortyapi.com/api/character/15'
+                        created: '2017-11-04T20:56:13.215Z'
+                      -
+                        id: 16
+                        name: 'Amish Cyborg'
+                        status: Dead
+                        species: Alien
+                        type: Parasite
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Earth (Replacement Dimension)'
+                          url: 'https://rickandmortyapi.com/api/location/20'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/16.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/15'
+                        url: 'https://rickandmortyapi.com/api/character/16'
+                        created: '2017-11-04T21:12:45.235Z'
+                      -
+                        id: 17
+                        name: Annie
+                        status: Alive
+                        species: Human
+                        type: ''
+                        gender: Female
+                        origin:
+                          name: 'Earth (C-137)'
+                          url: 'https://rickandmortyapi.com/api/location/1'
+                        location:
+                          name: 'Anatomy Park'
+                          url: 'https://rickandmortyapi.com/api/location/5'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/17.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/3'
+                        url: 'https://rickandmortyapi.com/api/character/17'
+                        created: '2017-11-04T22:21:24.481Z'
+                      -
+                        id: 18
+                        name: 'Antenna Morty'
+                        status: Alive
+                        species: Human
+                        type: 'Human with antennae'
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Citadel of Ricks'
+                          url: 'https://rickandmortyapi.com/api/location/3'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/18.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                          - 'https://rickandmortyapi.com/api/episode/28'
+                        url: 'https://rickandmortyapi.com/api/character/18'
+                        created: '2017-11-04T22:25:29.008Z'
+                      -
+                        id: 19
+                        name: 'Antenna Rick'
+                        status: unknown
+                        species: Human
+                        type: 'Human with antennae'
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: unknown
+                          url: ''
+                        image: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/10'
+                        url: 'https://rickandmortyapi.com/api/character/19'
+                        created: '2017-11-04T22:28:13.756Z'
+                      -
+                        id: 20
+                        name: 'Ants in my Eyes Johnson'
+                        status: unknown
+                        species: Human
+                        type: 'Human with ants in his eyes'
+                        gender: Male
+                        origin:
+                          name: unknown
+                          url: ''
+                        location:
+                          name: 'Interdimensional Cable'
+                          url: 'https://rickandmortyapi.com/api/location/6'
+                        image: 'https://rickandmortyapi.com/api/character/avatar/20.jpeg'
+                        episode:
+                          - 'https://rickandmortyapi.com/api/episode/8'
+                        url: 'https://rickandmortyapi.com/api/character/20'
+                        created: '2017-11-04T22:34:53.659Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Rick Sanchez'
+                        status:
+                          type: string
+                          example: Alive
+                        species:
+                          type: string
+                          example: Human
+                        type:
+                          type: string
+                          example: ''
+                        gender:
+                          type: string
+                          example: Male
+                        origin:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: 'Earth (C-137)'
+                            url:
+                              type: string
+                              example: 'https://rickandmortyapi.com/api/location/1'
+                        location:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: 'Citadel of Ricks'
+                            url:
+                              type: string
+                              example: 'https://rickandmortyapi.com/api/location/3'
+                        image:
+                          type: string
+                          example: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
+                        episode:
+                          type: array
+                          example:
+                            - 'https://rickandmortyapi.com/api/episode/1'
+                            - 'https://rickandmortyapi.com/api/episode/2'
+                            - 'https://rickandmortyapi.com/api/episode/3'
+                            - 'https://rickandmortyapi.com/api/episode/4'
+                            - 'https://rickandmortyapi.com/api/episode/5'
+                            - 'https://rickandmortyapi.com/api/episode/6'
+                            - 'https://rickandmortyapi.com/api/episode/7'
+                            - 'https://rickandmortyapi.com/api/episode/8'
+                            - 'https://rickandmortyapi.com/api/episode/9'
+                            - 'https://rickandmortyapi.com/api/episode/10'
+                            - 'https://rickandmortyapi.com/api/episode/11'
+                            - 'https://rickandmortyapi.com/api/episode/12'
+                            - 'https://rickandmortyapi.com/api/episode/13'
+                            - 'https://rickandmortyapi.com/api/episode/14'
+                            - 'https://rickandmortyapi.com/api/episode/15'
+                            - 'https://rickandmortyapi.com/api/episode/16'
+                            - 'https://rickandmortyapi.com/api/episode/17'
+                            - 'https://rickandmortyapi.com/api/episode/18'
+                            - 'https://rickandmortyapi.com/api/episode/19'
+                            - 'https://rickandmortyapi.com/api/episode/20'
+                            - 'https://rickandmortyapi.com/api/episode/21'
+                            - 'https://rickandmortyapi.com/api/episode/22'
+                            - 'https://rickandmortyapi.com/api/episode/23'
+                            - 'https://rickandmortyapi.com/api/episode/24'
+                            - 'https://rickandmortyapi.com/api/episode/25'
+                            - 'https://rickandmortyapi.com/api/episode/26'
+                            - 'https://rickandmortyapi.com/api/episode/27'
+                            - 'https://rickandmortyapi.com/api/episode/28'
+                            - 'https://rickandmortyapi.com/api/episode/29'
+                            - 'https://rickandmortyapi.com/api/episode/30'
+                            - 'https://rickandmortyapi.com/api/episode/31'
+                            - 'https://rickandmortyapi.com/api/episode/32'
+                            - 'https://rickandmortyapi.com/api/episode/33'
+                            - 'https://rickandmortyapi.com/api/episode/34'
+                            - 'https://rickandmortyapi.com/api/episode/35'
+                            - 'https://rickandmortyapi.com/api/episode/36'
+                            - 'https://rickandmortyapi.com/api/episode/37'
+                            - 'https://rickandmortyapi.com/api/episode/38'
+                            - 'https://rickandmortyapi.com/api/episode/39'
+                            - 'https://rickandmortyapi.com/api/episode/40'
+                            - 'https://rickandmortyapi.com/api/episode/41'
+                            - 'https://rickandmortyapi.com/api/episode/42'
+                            - 'https://rickandmortyapi.com/api/episode/43'
+                            - 'https://rickandmortyapi.com/api/episode/44'
+                            - 'https://rickandmortyapi.com/api/episode/45'
+                            - 'https://rickandmortyapi.com/api/episode/46'
+                            - 'https://rickandmortyapi.com/api/episode/47'
+                            - 'https://rickandmortyapi.com/api/episode/48'
+                            - 'https://rickandmortyapi.com/api/episode/49'
+                            - 'https://rickandmortyapi.com/api/episode/50'
+                            - 'https://rickandmortyapi.com/api/episode/51'
+                          items:
+                            type: string
+                        url:
+                          type: string
+                          example: 'https://rickandmortyapi.com/api/character/1'
+                        created:
+                          type: string
+                          example: '2017-11-04T18:48:46.250Z'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  message: 'Character not found'
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Character not found'
+      tags:
+        - Personajes
+      security: []
+  '/api/characters/{id}':
+    get:
+      summary: 'Mostrar un personaje.'
+      operationId: mostrarUnPersonaje
+      description: ''
+      parameters:
+        -
+          in: query
+          name: id
+          description: 'Id del personaje'
+          example: 4
+          required: false
+          schema:
+            type: integer
+            description: 'Id del personaje'
+            example: 4
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n   \"id\": integer,\n   \"name\": string,\n   \"status\": string,\n   \"species\": string,\n   \"type\": string,\n   \"gender\": string,\n   \"origin\": {\n       \"name\": string,\n       \"url\": string\n   },\n   \"location\": {\n       \"name\": string,\n       \"url\": string\n   },\n   \"image\": string,\n   \"episode\": [\n       string\n   ],\n   \"url\": string,\n   \"created\": string\n}"
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: true
+                  message: 'Character not found'
+                properties:
+                  error:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Character not found'
+      tags:
+        - Personajes
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the character.'
+        example: ipsum
+        required: true
+        schema:
+          type: string
+  /api/register:
+    post:
+      summary: 'Registrar usuarios.'
+      operationId: registrarUsuarios
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n   \"token\": string\n}"
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation Error'
+                  messages:
+                    name:
+                      - 'The name field is required.'
+                    email:
+                      - 'The email field is required.'
+                    password:
+                      - 'The password field is required.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation Error'
+                  messages:
+                    type: object
+                    properties:
+                      name:
+                        type: array
+                        example:
+                          - 'The name field is required.'
+                        items:
+                          type: string
+                      email:
+                        type: array
+                        example:
+                          - 'The email field is required.'
+                        items:
+                          type: string
+                      password:
+                        type: array
+                        example:
+                          - 'The password field is required.'
+                        items:
+                          type: string
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Registration Error'
+                  message: 'Internal Server Error'
+                properties:
+                  error:
+                    type: string
+                    example: 'Registration Error'
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Usuarios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Nombre del usuario'
+                  example: et
+                email:
+                  type: string
+                  description: 'Correo electrónico del usuario'
+                  example: gleason.madisyn@example.com
+                password:
+                  type: string
+                  description: 'Contraseña del usuario'
+                  example: ']#$!4Iy'
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/login:
+    post:
+      summary: 'Autenticar usuarios.'
+      operationId: autenticarUsuarios
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n   \"token\": string\n}"
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Validation Error'
+                  messages:
+                    email:
+                      - 'The email field is required.'
+                    password:
+                      - 'The password field is required.'
+                properties:
+                  error:
+                    type: string
+                    example: 'Validation Error'
+                  messages:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        example:
+                          - 'The email field is required.'
+                        items:
+                          type: string
+                      password:
+                        type: array
+                        example:
+                          - 'The password field is required.'
+                        items:
+                          type: string
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'Registration Error'
+                  message: 'Internal Server Error'
+                properties:
+                  error:
+                    type: string
+                    example: 'Registration Error'
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - Usuarios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Correo electrónico del usuario'
+                  example: kuhn.raina@example.net
+                password:
+                  type: string
+                  description: 'Contraseña del usuario'
+                  example: '1KR@\F|2N}|Zf'
+              required:
+                - email
+                - password
+      security: []
+tags:
+  -
+    name: Autenticado
+    description: ''
+  -
+    name: Personajes
+    description: ''
+  -
+    name: Usuarios
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

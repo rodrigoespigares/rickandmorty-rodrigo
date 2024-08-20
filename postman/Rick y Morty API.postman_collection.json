@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "b5ad17cf-b995-4d2b-a6c9-4eb7a260c010",
+		"name": "Rick y Morty API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37784591"
+	},
+	"item": [
+		{
+			"name": "Listado de personajes",
+			"item": [
+				{
+					"name": "Listado de personajes [ GENERAL ]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{$url}}/api/characters",
+							"host": [
+								"{{$url}}"
+							],
+							"path": [
+								"api",
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listado de personajes [ Nº PAGINA ]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{$url}}/api/characters?page=41",
+							"host": [
+								"{{$url}}"
+							],
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "41"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listado de personaje [ FILTROS ]",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bajo autenticación",
+			"item": [
+				{
+					"name": "Añadir un personaje a favoritos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjI0OTZlMWZmMmQ2ZTVlYjVhOGM3M2Y4Njc1YjZmZjEwMDM5NTdmZDE0NmE3ZGJlNjA3ZGVmNDlhOGE2MjlkMTdhZDg0ZTAyYjhlMjllN2IiLCJpYXQiOjE3MjQxNDE3MzguNDU2MDA4LCJuYmYiOjE3MjQxNDE3MzguNDU2MDE0LCJleHAiOjE3NTU2Nzc3MzguNDUxMTA3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.INrupbouKlIQdDF51pLaneEyua54WWZNfqUGeSMSEeD7Zgni7tou-ocXFMmtKdWA8RPabHvndGAXmLnRUUYy_kCziJTxuloX16DbpPp_p9_caSt1qJzS7XSjyNct1Xru9o6aepVEa_Q62ly_HE9YTn0FX3vsZaYgGksP84qOdi3JfSQJlXCedEEZgHHWkiPVxUl9HdpKDyjes88O2FT4kPMXKJoR5ghlyW7b9e8-yyHpH_FUADZCdvoFBDGPAaagcR3ZDPiQvDyV_j2kWbV5zoDQXZq4S2lxYsgj4alBr1YObuElIrHOqsxlSLAZ1KXAhWt1VXwWXosCiVx3QleoNiLbETzEPMEgPn7OlKOjlYlq3tvCH_qNBawk1Ll0N0EqLnhiKhoPFo8Uw-RlMo865ux0N5i-E1MXZd0SwxftWM2_LDefHKAqav0b76uHtXyaBIOi6aouVnbyIVTJYlUyi7XgsJMtSySbz6RjFMWUsKlmzW0MNSSt7VfhD2z-fTJXjnpymdDxAYcEepa7G6XJ9nApHuKWUT8_dPRkEo5Gp1iGSsIGCuqayIvCH6S2QwzeA8J0RCCLjVHcoZVfINmv7MmifrEzrfyGqABNN2Eoz1vORwLoCr7Ynv8ftbWSFIqquTzqivRC0uzUoYcKBs5L72dZ7NnHlwL0TgwHlff6ifo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "character_id",
+									"value": "13",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{$url}}/api/favorites",
+							"host": [
+								"{{$url}}"
+							],
+							"path": [
+								"api",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener favoritos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjI0OTZlMWZmMmQ2ZTVlYjVhOGM3M2Y4Njc1YjZmZjEwMDM5NTdmZDE0NmE3ZGJlNjA3ZGVmNDlhOGE2MjlkMTdhZDg0ZTAyYjhlMjllN2IiLCJpYXQiOjE3MjQxNDE3MzguNDU2MDA4LCJuYmYiOjE3MjQxNDE3MzguNDU2MDE0LCJleHAiOjE3NTU2Nzc3MzguNDUxMTA3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.INrupbouKlIQdDF51pLaneEyua54WWZNfqUGeSMSEeD7Zgni7tou-ocXFMmtKdWA8RPabHvndGAXmLnRUUYy_kCziJTxuloX16DbpPp_p9_caSt1qJzS7XSjyNct1Xru9o6aepVEa_Q62ly_HE9YTn0FX3vsZaYgGksP84qOdi3JfSQJlXCedEEZgHHWkiPVxUl9HdpKDyjes88O2FT4kPMXKJoR5ghlyW7b9e8-yyHpH_FUADZCdvoFBDGPAaagcR3ZDPiQvDyV_j2kWbV5zoDQXZq4S2lxYsgj4alBr1YObuElIrHOqsxlSLAZ1KXAhWt1VXwWXosCiVx3QleoNiLbETzEPMEgPn7OlKOjlYlq3tvCH_qNBawk1Ll0N0EqLnhiKhoPFo8Uw-RlMo865ux0N5i-E1MXZd0SwxftWM2_LDefHKAqav0b76uHtXyaBIOi6aouVnbyIVTJYlUyi7XgsJMtSySbz6RjFMWUsKlmzW0MNSSt7VfhD2z-fTJXjnpymdDxAYcEepa7G6XJ9nApHuKWUT8_dPRkEo5Gp1iGSsIGCuqayIvCH6S2QwzeA8J0RCCLjVHcoZVfINmv7MmifrEzrfyGqABNN2Eoz1vORwLoCr7Ynv8ftbWSFIqquTzqivRC0uzUoYcKBs5L72dZ7NnHlwL0TgwHlff6ifo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{$url}}/api/favorites",
+							"host": [
+								"{{$url}}"
+							],
+							"path": [
+								"api",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un favorito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjI0OTZlMWZmMmQ2ZTVlYjVhOGM3M2Y4Njc1YjZmZjEwMDM5NTdmZDE0NmE3ZGJlNjA3ZGVmNDlhOGE2MjlkMTdhZDg0ZTAyYjhlMjllN2IiLCJpYXQiOjE3MjQxNDE3MzguNDU2MDA4LCJuYmYiOjE3MjQxNDE3MzguNDU2MDE0LCJleHAiOjE3NTU2Nzc3MzguNDUxMTA3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.INrupbouKlIQdDF51pLaneEyua54WWZNfqUGeSMSEeD7Zgni7tou-ocXFMmtKdWA8RPabHvndGAXmLnRUUYy_kCziJTxuloX16DbpPp_p9_caSt1qJzS7XSjyNct1Xru9o6aepVEa_Q62ly_HE9YTn0FX3vsZaYgGksP84qOdi3JfSQJlXCedEEZgHHWkiPVxUl9HdpKDyjes88O2FT4kPMXKJoR5ghlyW7b9e8-yyHpH_FUADZCdvoFBDGPAaagcR3ZDPiQvDyV_j2kWbV5zoDQXZq4S2lxYsgj4alBr1YObuElIrHOqsxlSLAZ1KXAhWt1VXwWXosCiVx3QleoNiLbETzEPMEgPn7OlKOjlYlq3tvCH_qNBawk1Ll0N0EqLnhiKhoPFo8Uw-RlMo865ux0N5i-E1MXZd0SwxftWM2_LDefHKAqav0b76uHtXyaBIOi6aouVnbyIVTJYlUyi7XgsJMtSySbz6RjFMWUsKlmzW0MNSSt7VfhD2z-fTJXjnpymdDxAYcEepa7G6XJ9nApHuKWUT8_dPRkEo5Gp1iGSsIGCuqayIvCH6S2QwzeA8J0RCCLjVHcoZVfINmv7MmifrEzrfyGqABNN2Eoz1vORwLoCr7Ynv8ftbWSFIqquTzqivRC0uzUoYcKBs5L72dZ7NnHlwL0TgwHlff6ifo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{$url}}/api/favorites/1",
+							"host": [
+								"{{$url}}"
+							],
+							"path": [
+								"api",
+								"favorites",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Detalle de personaje por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{$url}}/api/characters/1",
+					"host": [
+						"{{$url}}"
+					],
+					"path": [
+						"api",
+						"characters",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Testing",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test4@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "testing12345*",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{$url}}/api/register",
+					"host": [
+						"{{$url}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "testing12345*",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{$url}}/api/login",
+					"host": [
+						"{{$url}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "$url",
+			"value": "http://localhost:8000"
+		}
+	]
+}

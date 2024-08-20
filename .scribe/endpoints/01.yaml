@@ -1,0 +1,188 @@
+name: Usuarios
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/register
+    metadata:
+      groupName: Usuarios
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Registrar usuarios.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Nombre del usuario'
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Correo electrónico del usuario'
+        required: true
+        example: gleason.madisyn@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Contraseña del usuario'
+        required: true
+        example: ']#$!4Iy'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: et
+      email: gleason.madisyn@example.com
+      password: ']#$!4Iy'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+             "token": string
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+             "error": "Validation Error",
+             "messages": {
+                 "name": [
+                     "The name field is required."
+                 ],
+                 "email": [
+                     "The email field is required."
+                 ],
+                 "password": [
+                     "The password field is required."
+                 ]
+             }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+             "error": "Registration Error",
+             "message": "Internal Server Error"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: Usuarios
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Autenticar usuarios.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Correo electrónico del usuario'
+        required: true
+        example: kuhn.raina@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Contraseña del usuario'
+        required: true
+        example: '1KR@\F|2N}|Zf'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: kuhn.raina@example.net
+      password: '1KR@\F|2N}|Zf'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+             "token": string
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+             "error": "Validation Error",
+             "messages": {
+                 "email": [
+                     "The email field is required."
+                 ],
+                 "password": [
+                     "The password field is required."
+                 ]
+             }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+             "error": "Registration Error",
+             "message": "Internal Server Error"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

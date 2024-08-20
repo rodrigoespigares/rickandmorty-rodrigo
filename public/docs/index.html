@@ -1,0 +1,1987 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var tryItOutBaseUrl = "http://localhost";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-4.37.1.js"></script>
+
+    <script src="../docs/js/theme-default-4.37.1.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-autenticado" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="autenticado">
+                    <a href="#autenticado">Autenticado</a>
+                </li>
+                                    <ul id="tocify-subheader-autenticado" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="autenticado-POSTapi-favorites">
+                                <a href="#autenticado-POSTapi-favorites">Añadir un personaje a la lista de favoritos.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="autenticado-GETapi-favorites">
+                                <a href="#autenticado-GETapi-favorites">Listar los personajes favoritos.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="autenticado-DELETEapi-favorites--id-">
+                                <a href="#autenticado-DELETEapi-favorites--id-">Eliminar un personaje de la lista de favoritos.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-personajes" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="personajes">
+                    <a href="#personajes">Personajes</a>
+                </li>
+                                    <ul id="tocify-subheader-personajes" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="personajes-GETapi-characters">
+                                <a href="#personajes-GETapi-characters">Listar personajes.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="personajes-GETapi-characters--id-">
+                                <a href="#personajes-GETapi-characters--id-">Mostrar un personaje.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-usuarios" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="usuarios">
+                    <a href="#usuarios">Usuarios</a>
+                </li>
+                                    <ul id="tocify-subheader-usuarios" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="usuarios-POSTapi-register">
+                                <a href="#usuarios-POSTapi-register">Registrar usuarios.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="usuarios-POSTapi-login">
+                                <a href="#usuarios-POSTapi-login">Autenticar usuarios.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: August 20, 2024</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<aside>
+    <strong>Base URL</strong>: <code>http://localhost</code>
+</aside>
+<p>Esta documentación tiene como objetivo proveer toda la información necesaria para trabajar con la API de Rick and Morty. Además buscará mejorar la experiencia del usuario pudiendo mostrar en cualquier momento los personajes favoritos. Y editando el listado de los mismos.</p>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>To authenticate requests, include a <strong><code>Authorization</code></strong> header with the value <strong><code>"{YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
+
+        <h1 id="autenticado">Autenticado</h1>
+
+    
+
+                                <h2 id="autenticado-POSTapi-favorites">Añadir un personaje a la lista de favoritos.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-favorites">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/favorites" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"character_id\": 8
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/favorites"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "character_id": 8
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-favorites">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: false,
+    &quot;message&quot;: &quot;Character added to favorites&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: true,
+    &quot;message&quot;: &quot;Character not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-favorites" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-favorites"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-favorites"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-favorites" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-favorites">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-favorites" data-method="POST"
+      data-path="api/favorites"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-favorites', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-favorites"
+                    onclick="tryItOut('POSTapi-favorites');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-favorites"
+                    onclick="cancelTryOut('POSTapi-favorites');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-favorites"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/favorites</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-favorites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-favorites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>character_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="character_id"                data-endpoint="POSTapi-favorites"
+               value="8"
+               data-component="body">
+    <br>
+<p>Id del personaje Example: <code>8</code></p>
+        </div>
+        </form>
+
+                    <h2 id="autenticado-GETapi-favorites">Listar los personajes favoritos.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-favorites">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/favorites" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/favorites"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-favorites">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{[
+   {
+       &quot;character_id&quot;: integer,
+       &quot;url&quot;: string
+   }
+]}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-favorites" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-favorites"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-favorites"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-favorites" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-favorites">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-favorites" data-method="GET"
+      data-path="api/favorites"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-favorites', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-favorites"
+                    onclick="tryItOut('GETapi-favorites');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-favorites"
+                    onclick="cancelTryOut('GETapi-favorites');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-favorites"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/favorites</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-favorites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-favorites"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="autenticado-DELETEapi-favorites--id-">Eliminar un personaje de la lista de favoritos.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-favorites--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/api/favorites/nulla?id=10" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/favorites/nulla"
+);
+
+const params = {
+    "id": "10",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-favorites--id-">
+            <blockquote>
+            <p>Example response (202):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: false,
+    &quot;message&quot;: &quot;Character removed from favorites&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: true,
+    &quot;message&quot;: &quot;Not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-favorites--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-favorites--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-favorites--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-favorites--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-favorites--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-favorites--id-" data-method="DELETE"
+      data-path="api/favorites/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-favorites--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-favorites--id-"
+                    onclick="tryItOut('DELETEapi-favorites--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-favorites--id-"
+                    onclick="cancelTryOut('DELETEapi-favorites--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-favorites--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/favorites/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-favorites--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-favorites--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="DELETEapi-favorites--id-"
+               value="nulla"
+               data-component="url">
+    <br>
+<p>The ID of the favorite. Example: <code>nulla</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-favorites--id-"
+               value="10"
+               data-component="query">
+    <br>
+<p>Id del personaje Example: <code>10</code></p>
+            </div>
+                </form>
+
+                <h1 id="personajes">Personajes</h1>
+
+    
+
+                                <h2 id="personajes-GETapi-characters">Listar personajes.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-characters">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/characters?name=voluptas&amp;species=accusamus&amp;gender=illum&amp;type=vero" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/characters"
+);
+
+const params = {
+    "name": "voluptas",
+    "species": "accusamus",
+    "gender": "illum",
+    "type": "vero",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-characters">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;info&quot;: {
+        &quot;count&quot;: 826,
+        &quot;pages&quot;: 42,
+        &quot;next&quot;: &quot;http://localhost:8000/api/characters?page=2&quot;,
+        &quot;prev&quot;: null
+    },
+    &quot;results&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Rick Sanchez&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (C-137)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/1&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Citadel of Ricks&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/3&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/1.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/1&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/2&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/3&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/4&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/5&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/6&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/7&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/8&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/9&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/11&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/12&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/13&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/14&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/15&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/16&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/17&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/18&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/19&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/20&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/21&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/22&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/23&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/24&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/25&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/26&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/27&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/28&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/29&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/30&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/31&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/32&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/33&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/34&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/35&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/36&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/37&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/38&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/39&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/40&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/41&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/42&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/43&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/44&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/45&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/46&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/47&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/48&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/49&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/50&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/51&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/1&quot;,
+            &quot;created&quot;: &quot;2017-11-04T18:48:46.250Z&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Morty Smith&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Citadel of Ricks&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/3&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/2.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/1&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/2&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/3&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/4&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/5&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/6&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/7&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/8&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/9&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/11&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/12&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/13&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/14&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/15&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/16&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/17&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/18&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/19&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/20&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/21&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/22&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/23&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/24&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/25&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/26&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/27&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/28&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/29&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/30&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/31&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/32&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/33&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/34&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/35&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/36&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/37&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/38&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/39&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/40&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/41&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/42&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/43&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/44&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/45&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/46&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/47&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/48&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/49&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/50&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/51&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/2&quot;,
+            &quot;created&quot;: &quot;2017-11-04T18:50:21.651Z&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Summer Smith&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Female&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/3.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/6&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/7&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/8&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/9&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/11&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/12&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/14&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/15&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/16&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/17&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/18&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/19&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/20&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/21&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/22&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/23&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/24&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/25&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/26&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/27&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/29&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/30&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/31&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/32&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/33&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/34&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/35&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/36&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/38&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/39&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/40&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/41&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/42&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/43&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/44&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/45&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/46&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/47&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/48&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/49&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/51&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/3&quot;,
+            &quot;created&quot;: &quot;2017-11-04T19:09:56.428Z&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Beth Smith&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Female&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/4.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/6&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/7&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/8&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/9&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/11&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/12&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/14&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/15&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/16&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/18&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/19&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/20&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/21&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/22&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/23&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/24&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/25&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/26&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/27&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/28&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/29&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/30&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/31&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/32&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/33&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/34&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/35&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/36&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/38&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/39&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/40&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/41&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/42&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/43&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/44&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/45&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/46&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/47&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/48&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/49&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/51&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/4&quot;,
+            &quot;created&quot;: &quot;2017-11-04T19:22:43.665Z&quot;
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;name&quot;: &quot;Jerry Smith&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/5.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/6&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/7&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/8&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/9&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/11&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/12&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/13&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/14&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/15&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/16&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/18&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/19&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/20&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/21&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/22&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/23&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/26&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/29&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/30&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/31&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/32&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/33&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/35&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/36&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/38&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/39&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/40&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/41&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/42&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/43&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/44&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/45&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/46&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/47&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/48&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/49&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/50&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/51&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/5&quot;,
+            &quot;created&quot;: &quot;2017-11-04T19:26:56.301Z&quot;
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;name&quot;: &quot;Abadango Cluster Princess&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Alien&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Female&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Abadango&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/2&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Abadango&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/2&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/6.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/27&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/6&quot;,
+            &quot;created&quot;: &quot;2017-11-04T19:50:28.250Z&quot;
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;Abradolf Lincler&quot;,
+            &quot;status&quot;: &quot;unknown&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;Genetic experiment&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Testicle Monster Dimension&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/21&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/7.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/11&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/7&quot;,
+            &quot;created&quot;: &quot;2017-11-04T19:59:20.523Z&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;name&quot;: &quot;Adjudicator Rick&quot;,
+            &quot;status&quot;: &quot;Dead&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Citadel of Ricks&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/3&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/8.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/28&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/8&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:03:34.737Z&quot;
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;name&quot;: &quot;Agency Director&quot;,
+            &quot;status&quot;: &quot;Dead&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/9.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/24&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/9&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:06:54.976Z&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;name&quot;: &quot;Alan Rails&quot;,
+            &quot;status&quot;: &quot;Dead&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;Superhuman (Ghost trains summoner)&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Worldender&#039;s lair&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/4&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/10.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/25&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/10&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:19:09.017Z&quot;
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;name&quot;: &quot;Albert Einstein&quot;,
+            &quot;status&quot;: &quot;Dead&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (C-137)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/1&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/11.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/12&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/11&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:20:20.965Z&quot;
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;name&quot;: &quot;Alexander&quot;,
+            &quot;status&quot;: &quot;Dead&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (C-137)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/1&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Anatomy Park&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/5&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/12.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/3&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/12&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:32:33.144Z&quot;
+        },
+        {
+            &quot;id&quot;: 13,
+            &quot;name&quot;: &quot;Alien Googah&quot;,
+            &quot;status&quot;: &quot;unknown&quot;,
+            &quot;species&quot;: &quot;Alien&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;unknown&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/13.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/31&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/13&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:33:30.779Z&quot;
+        },
+        {
+            &quot;id&quot;: 14,
+            &quot;name&quot;: &quot;Alien Morty&quot;,
+            &quot;status&quot;: &quot;unknown&quot;,
+            &quot;species&quot;: &quot;Alien&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Citadel of Ricks&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/3&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/14.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/14&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:51:31.373Z&quot;
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;name&quot;: &quot;Alien Rick&quot;,
+            &quot;status&quot;: &quot;unknown&quot;,
+            &quot;species&quot;: &quot;Alien&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Citadel of Ricks&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/3&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/15.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/15&quot;,
+            &quot;created&quot;: &quot;2017-11-04T20:56:13.215Z&quot;
+        },
+        {
+            &quot;id&quot;: 16,
+            &quot;name&quot;: &quot;Amish Cyborg&quot;,
+            &quot;status&quot;: &quot;Dead&quot;,
+            &quot;species&quot;: &quot;Alien&quot;,
+            &quot;type&quot;: &quot;Parasite&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Earth (Replacement Dimension)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/20&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/16.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/15&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/16&quot;,
+            &quot;created&quot;: &quot;2017-11-04T21:12:45.235Z&quot;
+        },
+        {
+            &quot;id&quot;: 17,
+            &quot;name&quot;: &quot;Annie&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;&quot;,
+            &quot;gender&quot;: &quot;Female&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;Earth (C-137)&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/1&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Anatomy Park&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/5&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/17.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/3&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/17&quot;,
+            &quot;created&quot;: &quot;2017-11-04T22:21:24.481Z&quot;
+        },
+        {
+            &quot;id&quot;: 18,
+            &quot;name&quot;: &quot;Antenna Morty&quot;,
+            &quot;status&quot;: &quot;Alive&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;Human with antennae&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Citadel of Ricks&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/3&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/18.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;,
+                &quot;https://rickandmortyapi.com/api/episode/28&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/18&quot;,
+            &quot;created&quot;: &quot;2017-11-04T22:25:29.008Z&quot;
+        },
+        {
+            &quot;id&quot;: 19,
+            &quot;name&quot;: &quot;Antenna Rick&quot;,
+            &quot;status&quot;: &quot;unknown&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;Human with antennae&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/19.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/10&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/19&quot;,
+            &quot;created&quot;: &quot;2017-11-04T22:28:13.756Z&quot;
+        },
+        {
+            &quot;id&quot;: 20,
+            &quot;name&quot;: &quot;Ants in my Eyes Johnson&quot;,
+            &quot;status&quot;: &quot;unknown&quot;,
+            &quot;species&quot;: &quot;Human&quot;,
+            &quot;type&quot;: &quot;Human with ants in his eyes&quot;,
+            &quot;gender&quot;: &quot;Male&quot;,
+            &quot;origin&quot;: {
+                &quot;name&quot;: &quot;unknown&quot;,
+                &quot;url&quot;: &quot;&quot;
+            },
+            &quot;location&quot;: {
+                &quot;name&quot;: &quot;Interdimensional Cable&quot;,
+                &quot;url&quot;: &quot;https://rickandmortyapi.com/api/location/6&quot;
+            },
+            &quot;image&quot;: &quot;https://rickandmortyapi.com/api/character/avatar/20.jpeg&quot;,
+            &quot;episode&quot;: [
+                &quot;https://rickandmortyapi.com/api/episode/8&quot;
+            ],
+            &quot;url&quot;: &quot;https://rickandmortyapi.com/api/character/20&quot;,
+            &quot;created&quot;: &quot;2017-11-04T22:34:53.659Z&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: true,
+    &quot;message&quot;: &quot;Character not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-characters" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-characters"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-characters"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-characters" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-characters">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-characters" data-method="GET"
+      data-path="api/characters"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-characters', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-characters"
+                    onclick="tryItOut('GETapi-characters');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-characters"
+                    onclick="cancelTryOut('GETapi-characters');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-characters"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/characters</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-characters"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-characters"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="GETapi-characters"
+               value="voluptas"
+               data-component="query">
+    <br>
+<p>Nombre del personaje Example: <code>voluptas</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>species</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="species"                data-endpoint="GETapi-characters"
+               value="accusamus"
+               data-component="query">
+    <br>
+<p>Nombre de especie Example: <code>accusamus</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="gender"                data-endpoint="GETapi-characters"
+               value="illum"
+               data-component="query">
+    <br>
+<p>Nombre de género Example: <code>illum</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="type"                data-endpoint="GETapi-characters"
+               value="vero"
+               data-component="query">
+    <br>
+<p>Nombre de tipo Example: <code>vero</code></p>
+            </div>
+                </form>
+
+                    <h2 id="personajes-GETapi-characters--id-">Mostrar un personaje.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-characters--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/characters/ipsum?id=4" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/characters/ipsum"
+);
+
+const params = {
+    "id": "4",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-characters--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+   &quot;id&quot;: integer,
+   &quot;name&quot;: string,
+   &quot;status&quot;: string,
+   &quot;species&quot;: string,
+   &quot;type&quot;: string,
+   &quot;gender&quot;: string,
+   &quot;origin&quot;: {
+       &quot;name&quot;: string,
+       &quot;url&quot;: string
+   },
+   &quot;location&quot;: {
+       &quot;name&quot;: string,
+       &quot;url&quot;: string
+   },
+   &quot;image&quot;: string,
+   &quot;episode&quot;: [
+       string
+   ],
+   &quot;url&quot;: string,
+   &quot;created&quot;: string
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: true,
+    &quot;message&quot;: &quot;Character not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-characters--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-characters--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-characters--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-characters--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-characters--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-characters--id-" data-method="GET"
+      data-path="api/characters/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-characters--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-characters--id-"
+                    onclick="tryItOut('GETapi-characters--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-characters--id-"
+                    onclick="cancelTryOut('GETapi-characters--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-characters--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/characters/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-characters--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-characters--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="GETapi-characters--id-"
+               value="ipsum"
+               data-component="url">
+    <br>
+<p>The ID of the character. Example: <code>ipsum</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-characters--id-"
+               value="4"
+               data-component="query">
+    <br>
+<p>Id del personaje Example: <code>4</code></p>
+            </div>
+                </form>
+
+                <h1 id="usuarios">Usuarios</h1>
+
+    
+
+                                <h2 id="usuarios-POSTapi-register">Registrar usuarios.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-register">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/register" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"et\",
+    \"email\": \"gleason.madisyn@example.com\",
+    \"password\": \"]#$!4Iy\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/register"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "et",
+    "email": "gleason.madisyn@example.com",
+    "password": "]#$!4Iy"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-register">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+   &quot;token&quot;: string
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Validation Error&quot;,
+    &quot;messages&quot;: {
+        &quot;name&quot;: [
+            &quot;The name field is required.&quot;
+        ],
+        &quot;email&quot;: [
+            &quot;The email field is required.&quot;
+        ],
+        &quot;password&quot;: [
+            &quot;The password field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Registration Error&quot;,
+    &quot;message&quot;: &quot;Internal Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-register" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-register"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-register"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-register" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-register">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-register" data-method="POST"
+      data-path="api/register"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-register', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-register"
+                    onclick="tryItOut('POSTapi-register');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-register"
+                    onclick="cancelTryOut('POSTapi-register');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-register"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/register</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-register"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-register"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-register"
+               value="et"
+               data-component="body">
+    <br>
+<p>Nombre del usuario Example: <code>et</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-register"
+               value="gleason.madisyn@example.com"
+               data-component="body">
+    <br>
+<p>Correo electrónico del usuario Example: <code>gleason.madisyn@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-register"
+               value="]#$!4Iy"
+               data-component="body">
+    <br>
+<p>Contraseña del usuario Example: <code>]#$!4Iy</code></p>
+        </div>
+        </form>
+
+                    <h2 id="usuarios-POSTapi-login">Autenticar usuarios.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-login">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"kuhn.raina@example.net\",
+    \"password\": \"1KR@\\\\F|2N}|Zf\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "kuhn.raina@example.net",
+    "password": "1KR@\\F|2N}|Zf"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-login">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+   &quot;token&quot;: string
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Validation Error&quot;,
+    &quot;messages&quot;: {
+        &quot;email&quot;: [
+            &quot;The email field is required.&quot;
+        ],
+        &quot;password&quot;: [
+            &quot;The password field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;Registration Error&quot;,
+    &quot;message&quot;: &quot;Internal Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-login" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-login"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-login"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-login">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-login" data-method="POST"
+      data-path="api/login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-login"
+                    onclick="tryItOut('POSTapi-login');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-login"
+                    onclick="cancelTryOut('POSTapi-login');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-login"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/login</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-login"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-login"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-login"
+               value="kuhn.raina@example.net"
+               data-component="body">
+    <br>
+<p>Correo electrónico del usuario Example: <code>kuhn.raina@example.net</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-login"
+               value="1KR@\F|2N}|Zf"
+               data-component="body">
+    <br>
+<p>Contraseña del usuario Example: <code>1KR@\F|2N}|Zf</code></p>
+        </div>
+        </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>
